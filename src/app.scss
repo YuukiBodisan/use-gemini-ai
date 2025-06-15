@@ -1,0 +1,359 @@
+// Variables
+$color-main-dark: #3a3a37;
+$color-border-textarea-dark: #5f5f5f;
+$color-border-textarea-hover-dark: #858585;
+$color-white-dark: #fff;
+$btn-submit-color-dark: #eb7047;
+$btn-submit-color-hover-dark: #f78762;
+$disable-submit-btn-color-dark: #db7f60;
+
+$color-main-light: #fff;
+$color-border-textarea-light: #ccc;
+$color-border-textarea-hover-light: #999;
+$color-white-light: #000;
+$btn-submit-color-light: #3a86ff;
+$btn-submit-color-hover-light: #5fa8ff;
+$disable-submit-btn-color-light: #aaa;
+
+//Mixin
+@mixin bg-transparent {
+	background: transparent;
+	border: none;
+	outline: none;
+}
+
+// Main reset Style
+* {
+	box-sizing: border-box;
+}
+
+body {
+	height: 100%;
+	background-color: $color-main-dark;
+	padding: 0;
+	margin: 0;
+	transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+// Style for Chat
+.chat-window {
+	max-width: 800px;
+	padding: 0 15px;
+	margin: 0 auto;
+
+	.header {
+		max-width: 770px;
+		width: 97%;
+		position: fixed;
+		top: 0;
+		background-color: $color-main-dark;
+		box-shadow: 0px 5px 10px $color-main-dark;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		transition: all 0.4s;
+		&-title {
+			color: $color-white-dark;
+		}
+
+		&-block-utils {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			.change-theme-btn {
+				@include bg-transparent();
+				cursor: pointer;
+			}
+
+			.clear-chat-btn {
+				@include bg-transparent();
+				cursor: pointer;
+			}
+		}
+	}
+
+	.first-render-message {
+		margin-top: 300px;
+		text-align: center;
+
+		&-title {
+			font-size: 44px;
+			color: $color-white-dark;
+			font-weight: 700;
+			margin-bottom: 7px;
+		}
+
+		&-text {
+			color: $btn-submit-color-dark;
+			font-weight: 700;
+			font-size: 24px;
+		}
+	}
+
+	.chat-content {
+		margin-top: 80px;
+		// border: 1px solid #ccc;
+		display: flex;
+		flex-direction: column;
+		overflow-y: auto;
+		overflow-x: hidden;
+		padding: 16px 16px 200px 16px;
+		gap: 0.75rem;
+		scroll-behavior: smooth;
+		color: $color-white-dark;
+
+		.ai-message {
+			font-family: "Times New Roman", Times, serif;
+			p {
+				line-height: 20px;
+			}
+			li {
+				line-height: 26px;
+			}
+			a {
+				color: $btn-submit-color-hover-dark;
+			}
+		}
+	}
+
+	.chat-input {
+		width: 770px;
+		resize: none;
+		@include bg-transparent();
+		caret-color: $color-white-dark;
+		font-size: 17px;
+		color: $color-white-dark;
+		font-weight: 500;
+
+		&-inner {
+			position: fixed;
+			bottom: 0;
+			max-width: 770px;
+			width: 97%;
+			height: 50px;
+			background-color: $color-main-dark;
+			transition: all 0.4s;
+		}
+
+		&-btn-block {
+			margin-left: auto;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 10px;
+
+			.mic-btn {
+				@include bg-transparent();
+				cursor: pointer;
+
+				svg:hover {
+					transition: all 0.3s;
+					color: $btn-submit-color-hover-dark !important;
+				}
+			}
+
+			.voice-block {
+				.lang-select {
+					width: 80px;
+					color: $color-main-light;
+					background: transparent;
+					border: none;
+					margin-right: 10px;
+
+					&:focus {
+						outline: none;
+					}
+
+					option {
+						background-color: $btn-submit-color-dark;
+						margin: 0;
+					}
+				}
+			}
+		}
+
+		&-block {
+			display: flex;
+			gap: 10px;
+			flex-direction: column;
+			max-width: 770px;
+			width: 94%;
+			border: 1px solid $color-border-textarea-dark;
+			position: fixed;
+			bottom: 0;
+			padding: 15px;
+			border-radius: 15px;
+			background-color: $color-main-dark;
+			transition: all 0.4s;
+			margin-bottom: 10px;
+
+			&:hover {
+				border: 1px solid $color-border-textarea-hover-dark;
+			}
+
+			.submit-btn {
+				width: 34px;
+				height: 34px;
+				border-radius: 5px;
+				border: none;
+				outline: none;
+				cursor: pointer;
+				background-color: $btn-submit-color-dark;
+				transition: all 0.3s;
+			}
+
+			.hover-submit-btn {
+				&:hover {
+					background-color: $btn-submit-color-hover-dark;
+				}
+			}
+
+			.disable-submit-btn {
+				background-color: $disable-submit-btn-color-dark;
+			}
+		}
+	}
+}
+
+// Theme Light
+[data-theme="light"] {
+	body {
+		background-color: $color-main-light;
+	}
+
+	.chat-window {
+		.header {
+			background-color: $color-main-light;
+			box-shadow: 0px 5px 10px $color-main-light;
+
+			&-title {
+				color: $color-white-light;
+			}
+
+			&-block-utils {
+				.clear-chat-btn {
+					svg {
+						color: $color-white-light !important;
+					}
+				}
+			}
+		}
+
+		.first-render-message {
+			.ai-logo-spinner {
+				fill: $color-white-light !important;
+			}
+
+			&-title {
+				color: $color-white-light;
+			}
+
+			&-text {
+				color: $disable-submit-btn-color-light;
+			}
+		}
+
+		.chat-content {
+			color: $color-white-light;
+		}
+
+		.chat-input {
+			caret-color: $color-white-light;
+			color: $color-white-light;
+
+			&-inner {
+				background-color: $color-main-light;
+			}
+
+			&-btn-block {
+				.mic-btn {
+					svg {
+						color: $disable-submit-btn-color-light !important;
+						&:hover {
+							color: $btn-submit-color-hover-light !important;
+						}
+					}
+				}
+
+				.voice-block {
+					.lang-select {
+						color: $disable-submit-btn-color-light;
+
+						option {
+							background-color: $color-white-dark;
+						}
+					}
+				}
+			}
+
+			&-block {
+				border: 1px solid $color-border-textarea-light;
+
+				background-color: $color-main-light;
+
+				&:hover {
+					border: 1px solid $color-border-textarea-hover-light;
+				}
+
+				.submit-btn {
+					background-color: $btn-submit-color-light;
+				}
+
+				.hover-submit-btn {
+					&:hover {
+						background-color: $btn-submit-color-hover-light;
+					}
+				}
+
+				.disable-submit-btn {
+					background-color: $disable-submit-btn-color-light;
+				}
+			}
+		}
+	}
+}
+
+// Loader
+.loader {
+	width: 50px;
+	aspect-ratio: 1;
+	display: grid;
+	border: 4px solid #0000;
+	border-radius: 50%;
+	border-right-color: #25b09b;
+	animation: l15 1s infinite linear;
+}
+.loader::before,
+.loader::after {
+	content: "";
+	grid-area: 1/1;
+	margin: 2px;
+	border: inherit;
+	border-radius: 50%;
+	animation: l15 2s infinite;
+}
+.loader::after {
+	margin: 8px;
+	animation-duration: 3s;
+}
+@keyframes l15 {
+	100% {
+		transform: rotate(1turn);
+	}
+}
+
+// Spinner Animation
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.ai-logo-spinner {
+	animation: spin var(--spin-duration, 20s) linear infinite;
+}
